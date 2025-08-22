@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjqj4wr7yuhkf"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_0hdqf"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2_8xvqg"]
+[ext_resource type="Script" path="res://scripts/DebugOverlay.gd" id="3_5r8hs"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0hdqf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1, 1)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("2_8xvqg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = preload("res://assets/sprites/player_placeholder.svg")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DebugOverlay" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 300.0
+offset_bottom = 150.0
+script = ExtResource("3_5r8hs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+
+[node name="DebugLabel" type="Label" parent="UI/DebugOverlay/VBoxContainer"]
+layout_mode = 2
+text = "DEBUG OVERLAY"
+modulate = Color(1, 1, 0, 1)
+
+[node name="FPSLabel" type="Label" parent="UI/DebugOverlay/VBoxContainer"]
+layout_mode = 2
+text = "FPS: --"
+
+[node name="PositionLabel" type="Label" parent="UI/DebugOverlay/VBoxContainer"]
+layout_mode = 2
+text = "Pos: (0, 0) | Vel: (0, 0)"
+
+[node name="NetworkLabel" type="Label" parent="UI/DebugOverlay/VBoxContainer"]
+layout_mode = 2
+text = "RTT: --ms | Seq: -- | Tick: --"
+modulate = Color(0, 1, 1, 1)
